@@ -9,28 +9,31 @@
 
     <AutoCompleteTextView
         android:id="@+id/autoCompleteTextView"
-        android:layout_width="0dp"
+        android:layout_width="361dp"
         android:layout_height="50dp"
         android:ems="10"
         android:hint="Nhập từ để tra"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Dịch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/autoCompleteTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/suggestionListView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="411dp"
+        android:layout_height="681dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/autoCompleteTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
