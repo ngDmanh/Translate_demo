@@ -13,7 +13,7 @@ public class Uk {
         this.media = media;
     }
 
-    public void setId(String _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 
