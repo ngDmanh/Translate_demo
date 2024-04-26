@@ -13,6 +13,42 @@ public class Word {
 
     private Integer __v;
 
+    public void setId(String _id) {
+        this._id = _id;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setGrammar(String grammar) {
+        this.grammar = grammar;
+    }
+
+    public void setPronounce(Pronounce pronounce) {
+        this.pronounce = pronounce;
+    }
+
+    public void setInfl(String infl) {
+        this.infl = infl;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public void setContents(Content contents) {
+        this.contents = contents;
+    }
+
+    public void set__v(Integer __v) {
+        this.__v = __v;
+    }
+
     public String getId() {
         return _id;
     }

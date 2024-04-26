@@ -6,6 +6,22 @@ public class Meaning {
     private List<String> examples;
     private String _id;
 
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public void setMeaning(String meaning) {
+        this.meaning = meaning;
+    }
+
+    public void setExamples(List<String> examples) {
+        this.examples = examples;
+    }
+
+    public void setId(String _id) {
+        this._id = _id;
+    }
+
     public String getInfo() {
         return info;
     }

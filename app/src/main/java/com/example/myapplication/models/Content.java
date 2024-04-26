@@ -8,6 +8,22 @@ public class Content {
     private List<Phrases> phrases;
     private String _id;
 
+    public void setGuideword(String guideword) {
+        this.guideword = guideword;
+    }
+
+    public void setMeanings(List<Meaning> meanings) {
+        this.meanings = meanings;
+    }
+
+    public void setPhrases(List<Phrases> phrases) {
+        this.phrases = phrases;
+    }
+
+    public void setId(String _id) {
+        this._id = _id;
+    }
+
     public String getGuideword() {
         return guideword;
     }

@@ -5,6 +5,18 @@ public class Uk {
     private String media;
     private String _id;
 
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setMedia(String media) {
+        this.media = media;
+    }
+
+    public void setId(String _id) {
+        this._id = _id;
+    }
+
     public String getText() {
         return text;
     }

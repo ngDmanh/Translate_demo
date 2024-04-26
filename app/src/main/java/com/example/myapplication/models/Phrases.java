@@ -8,6 +8,22 @@ public class Phrases {
     private List<Meaning> meanings;
     private  String _id;
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public void setMeanings(List<Meaning> meanings) {
+        this.meanings = meanings;
+    }
+
+    public void setId(String _id) {
+        this._id = _id;
+    }
+
     public String getTitle() {
         return title;
     }

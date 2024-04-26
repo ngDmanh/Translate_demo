@@ -5,6 +5,18 @@ public class Pronounce {
     private Uk uk;
     private String _id;
 
+    public void setUs(Us us) {
+        this.us = us;
+    }
+
+    public void setUk(Uk uk) {
+        this.uk = uk;
+    }
+
+    public void setId(String _id) {
+        this._id = _id;
+    }
+
     public Us getUs() {
         return us;
     }
