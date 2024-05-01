@@ -1,5 +1,7 @@
 package com.example.myapplication.models;
 
+import java.util.List;
+
 public class Word {
     private String _id;
     private String category;
@@ -9,7 +11,7 @@ public class Word {
     private String infl;
     private String info;
 
-    private Content contents;
+    private List<Content> contents;
 
     private Integer __v;
 
@@ -41,7 +43,7 @@ public class Word {
         this.info = info;
     }
 
-    public void setContents(Content contents) {
+    public void setContents(List<Content> contents) {
         this.contents = contents;
     }
 
@@ -77,7 +79,7 @@ public class Word {
         return info;
     }
 
-    public Content getContents() {
+    public List<Content> getContents() {
         return contents;
     }
 

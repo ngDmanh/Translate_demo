@@ -2,7 +2,7 @@ package com.example.myapplication.models;
 
 import java.util.List;
 
-public class Response {
+public class CambridgeResponse {
     private Boolean status;
     private List<Word> data;
 

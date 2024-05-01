@@ -8,7 +8,7 @@ public class Content {
     private List<Phrases> phrases;
     private String _id;
 
-    public void setGuideword(String guideword) {
+    public void setGuideWord(String guideword) {
         this.guideword = guideword;
     }
 
@@ -24,7 +24,7 @@ public class Content {
         this._id = _id;
     }
 
-    public String getGuideword() {
+    public String getGuideWord() {
         return guideword;
     }
 
