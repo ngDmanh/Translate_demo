@@ -1,15 +1,12 @@
 package com.example.myapplication;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -30,40 +27,34 @@ public class MainActivity extends AppCompatActivity {
     private CambridgeService cambridgeService;
 
     // Khai báo biến
-    TextView tvTitle;
-    ImageButton ibFind;
-    EditText etWrite;
-    ImageButton ibClose;
-    TextView tvResult;
+    private TextView tvTitle;
+    private ImageButton ibFind;
+    private EditText etWrite;
+    private ImageButton ibClose;
+    private TextView tvResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
         initData();
-        searchByKeyword("hello");
-
-        // Thiết lập Adapter cho AutoCompleteTextView
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, suggestedWords);
-//        autoCompleteTextView.setAdapter(adapter);
-//        autoCompleteTextView.setThreshold(1); // Khắc phục lỗi ko hiện gợi ý
-//
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
     }
+
     void initView() {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        // Khai báo biến
         tvTitle = findViewById(R.id.tvTitle);
         ibFind = findViewById(R.id.ibFind);
         etWrite = findViewById(R.id.etWrite);
         ibClose = findViewById(R.id.ibClose);
         tvResult = findViewById(R.id.tvResult);
+        ibFind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String keyword = etWrite.getText().toString();
+                searchByKeyword(keyword);
+            }
+        });
     }
-
     void initData() {
         cambridgeService = CambridgeAPIClient.getClient().create(CambridgeService.class);
     }
@@ -72,12 +63,17 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<CambridgeResponse>() {
             @Override
             public void onResponse(@NonNull Call<CambridgeResponse> call, @NonNull retrofit2.Response<CambridgeResponse> response) {
+                Toast.makeText(MainActivity.this, "Call api Success", Toast.LENGTH_SHORT).show();
                 CambridgeResponse cambridgeResponse = response.body();
+                if(cambridgeResponse != null && cambridgeResponse.getStatus()){
+                    tvResult.setText(String.valueOf(cambridgeResponse.getData()));
+                }
                 Log.d("test", new Gson().toJson(cambridgeResponse));
             }
 
             @Override
             public void onFailure(@NonNull Call<CambridgeResponse> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Call api error", Toast.LENGTH_SHORT).show();
                 call.cancel();
             }
         });

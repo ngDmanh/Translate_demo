@@ -23,7 +23,6 @@ public class CambridgeAPIClient {
                     .client(client)
                     .build();
         }
-
         return retrofit;
     }
 }
