@@ -14,11 +14,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.api.CambridgeAPIClient;
 import com.example.myapplication.api.CambridgeService;
+import com.example.myapplication.catagory.Category;
+import com.example.myapplication.catagory.CategoryAdapter;
 import com.example.myapplication.models.CambridgeResponse;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton ibFind;
     private EditText etWrite;
     private ImageButton ibClose;
-    private TextView tvResult;
+    private RecyclerView rcvCategory;
+    private CategoryAdapter categoryAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +54,17 @@ public class MainActivity extends AppCompatActivity {
         ibFind = findViewById(R.id.ibFind);
         etWrite = findViewById(R.id.etWrite);
         ibClose = findViewById(R.id.ibClose);
-        tvResult = findViewById(R.id.tvResult);
+        rcvCategory = findViewById(R.id.rcv_category);
+        categoryAdapter = new CategoryAdapter(this);
+
+        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(this, RecyclerView.VERTICAL,false);
+        rcvCategory.setLayoutManager(linearLayoutManager);
+
+        categoryAdapter.setData(getListCategory());
+        rcvCategory.setAdapter(categoryAdapter);
+
+
+
         ibFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +72,28 @@ public class MainActivity extends AppCompatActivity {
                 searchByKeyword(keyword);
             }
         });
+        ibClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etWrite.setText(null);
+            }
+        });
     }
+    private List<Category> getListCategory(){
+        List<Category> listCategory = new ArrayList<>();
+
+        listCategory.add(new Category("Category 1",null));
+        listCategory.add(new Category("Category 2",null));
+        listCategory.add(new Category("Category 3",null));
+        listCategory.add(new Category("Category 4",null));
+        listCategory.add(new Category("Category 5",null));
+        listCategory.add(new Category("Category 6",null));
+        listCategory.add(new Category("Category 7",null));
+        listCategory.add(new Category("Category 8",null));
+
+        return listCategory;
+    }
+
     void initData() {
         cambridgeService = CambridgeAPIClient.getClient().create(CambridgeService.class);
     }
@@ -65,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<CambridgeResponse> call, @NonNull retrofit2.Response<CambridgeResponse> response) {
                 Toast.makeText(MainActivity.this, "Call api Success", Toast.LENGTH_SHORT).show();
                 CambridgeResponse cambridgeResponse = response.body();
-                if(cambridgeResponse != null && cambridgeResponse.getStatus()){
-                    tvResult.setText(String.valueOf(cambridgeResponse.getData()));
-                }
+//                if(cambridgeResponse != null && cambridgeResponse.getStatus()){
+//                    tvResult.setText(String.valueOf(cambridgeResponse.getData()));
+//                }
                 Log.d("test", new Gson().toJson(cambridgeResponse));
             }
 
