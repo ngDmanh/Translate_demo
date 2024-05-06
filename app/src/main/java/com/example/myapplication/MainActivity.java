@@ -14,14 +14,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.adapter.WordAdapter;
 import com.example.myapplication.api.CambridgeAPIClient;
 import com.example.myapplication.api.CambridgeService;
-import com.example.myapplication.catagory.Category;
-import com.example.myapplication.catagory.CategoryAdapter;
 import com.example.myapplication.models.CambridgeResponse;
+import com.example.myapplication.models.Word;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -38,8 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton ibFind;
     private EditText etWrite;
     private ImageButton ibClose;
-    private RecyclerView rcvCategory;
-    private CategoryAdapter categoryAdapter;
+    private RecyclerView rcvWords;
+    private WordAdapter wordAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,16 +56,7 @@ public class MainActivity extends AppCompatActivity {
         ibFind = findViewById(R.id.ibFind);
         etWrite = findViewById(R.id.etWrite);
         ibClose = findViewById(R.id.ibClose);
-        rcvCategory = findViewById(R.id.rcv_category);
-        categoryAdapter = new CategoryAdapter(this);
-
-        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(this, RecyclerView.VERTICAL,false);
-        rcvCategory.setLayoutManager(linearLayoutManager);
-
-        categoryAdapter.setData(getListCategory());
-        rcvCategory.setAdapter(categoryAdapter);
-
-
+        rcvWords = findViewById(R.id.rcvWords);
 
         ibFind.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,21 +71,12 @@ public class MainActivity extends AppCompatActivity {
                 etWrite.setText(null);
             }
         });
-    }
-    private List<Category> getListCategory(){
-        List<Category> listCategory = new ArrayList<>();
 
-        listCategory.add(new Category("Category 1",null));
-        listCategory.add(new Category("Category 2",null));
-        listCategory.add(new Category("Category 3",null));
-        listCategory.add(new Category("Category 4",null));
-        listCategory.add(new Category("Category 5",null));
-        listCategory.add(new Category("Category 6",null));
-        listCategory.add(new Category("Category 7",null));
-        listCategory.add(new Category("Category 8",null));
-
-        return listCategory;
+        wordAdapter = new WordAdapter();
+        rcvWords.setHasFixedSize(true);
+        rcvWords.setAdapter(wordAdapter);
     }
+
 
     void initData() {
         cambridgeService = CambridgeAPIClient.getClient().create(CambridgeService.class);
@@ -102,12 +86,13 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<CambridgeResponse>() {
             @Override
             public void onResponse(@NonNull Call<CambridgeResponse> call, @NonNull retrofit2.Response<CambridgeResponse> response) {
-                Toast.makeText(MainActivity.this, "Call api Success", Toast.LENGTH_SHORT).show();
                 CambridgeResponse cambridgeResponse = response.body();
-//                if(cambridgeResponse != null && cambridgeResponse.getStatus()){
-//                    tvResult.setText(String.valueOf(cambridgeResponse.getData()));
-//                }
-                Log.d("test", new Gson().toJson(cambridgeResponse));
+                List<Word> listWord = cambridgeResponse != null && cambridgeResponse.getStatus() ? cambridgeResponse.getData() : new ArrayList<>();
+                if (!listWord.isEmpty()) {
+                    displayWords(listWord);
+                } else {
+                    Toast.makeText(MainActivity.this, "Call api error", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -116,5 +101,12 @@ public class MainActivity extends AppCompatActivity {
                 call.cancel();
             }
         });
+    }
+
+    void displayWords(List<Word> listWord) {
+        if (wordAdapter != null) {
+            wordAdapter.setListWord(listWord);
+            wordAdapter.notifyDataSetChanged();
+        }
     }
 }
