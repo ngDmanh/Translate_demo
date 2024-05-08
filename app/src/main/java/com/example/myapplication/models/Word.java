@@ -10,9 +10,7 @@ public class Word {
     private Pronounce pronounce;
     private String infl;
     private String info;
-
     private List<Content> contents;
-
     private Integer __v;
 
     public void setId(String _id) {

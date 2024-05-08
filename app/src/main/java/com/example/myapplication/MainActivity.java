@@ -33,14 +33,13 @@ import retrofit2.Callback;
 
 public class MainActivity extends AppCompatActivity {
     private CambridgeService cambridgeService;
-
-    // Khai báo biến
     private TextView tvTitle;
     private ImageButton ibFind;
     private EditText etWrite;
     private ImageButton ibClose;
     private RecyclerView rcvWords;
     private WordAdapter wordAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     void displayWords(List<Word> listWord) {
         if (wordAdapter != null) {
             wordAdapter.setListWord(listWord);

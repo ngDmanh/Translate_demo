@@ -6,8 +6,8 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:paddingTop="6dp"
-    android:paddingHorizontal="6dp">
+    android:paddingHorizontal="6dp"
+    android:paddingTop="6dp">
 
     <TextView
         android:id="@+id/tvCategory"
@@ -33,27 +33,52 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_toStartOf="@id/tvPronounceUSTitle"
+            android:layout_margin="6dp"
             android:textColor="@color/dark_blue"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:layout_margin="6dp"
-            tools:text="Beautiful Beaut" />
+            tools:text="Beautiful" />
 
         <TextView
             android:id="@+id/tvGrammar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvTitle"
             android:layout_alignStart="@id/tvTitle"
-            android:layout_alignEnd="@id/tvTitle"
+            android:layout_below="@id/tvTitle"
+            android:layout_marginTop="6dp"
             android:textColor="@color/dark_blue"
             android:textSize="16sp"
             android:textStyle="italic"
-            android:layout_marginTop="6dp"
-            tools:text="adjective adjective adjective" />
+            tools:text="exclammation" />
+
+        <TextView
+            android:id="@+id/tvInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tvGrammar"
+            android:layout_alignTop="@id/tvGrammar"
+            android:layout_alignBottom="@+id/tvGrammar"
+            android:gravity="center"
+            android:layout_marginHorizontal="6dp"
+            android:textColor="@color/light_blue"
+            android:ellipsize="marquee"
+            android:textSize="16sp"
+            android:textStyle="italic"
+
+            tools:text="(also mainly UK hallo)" />
+
+        <TextView
+            android:id="@+id/tvInfl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvGrammar"
+            android:layout_alignStart="@id/tvGrammar"
+            android:layout_marginTop="2dp"
+            android:maxLines="1"
+            android:textColor="@color/light_blue"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            tools:text="plural hellos" />
 
         <TextView
             android:id="@+id/tvPronounceUSTitle"
@@ -83,7 +108,7 @@
             android:textColor="@color/dark_blue"
             android:textSize="16sp"
             android:textStyle="italic"
-            tools:text="/ˈbjuː.t̬ə.fəl/ /ˈbjuː.t̬ə.fəl/  /ˈbjuː.t̬ə.fəl/" />
+            tools:text="/ˈbjuː.t̬ə.fəl/" />
 
         <TextView
             android:id="@+id/tvPronounceUKTitle"
@@ -92,7 +117,7 @@
             android:layout_alignTop="@id/tvPronounceUK"
             android:layout_alignBottom="@id/tvPronounceUK"
             android:layout_marginEnd="6dp"
-            android:layout_toStartOf="@id/tvPronounceUS"
+            android:layout_toStartOf="@id/tvPronounceUK"
             android:drawablePadding="4dp"
             android:gravity="center"
             android:text="@string/pronounce_uk_title"
@@ -113,13 +138,17 @@
             android:textColor="@color/dark_blue"
             android:textSize="16sp"
             android:textStyle="italic"
-            tools:text="/ˈbjuː.t̬ə.fəl/ /ˈbjuː.t̬ə.fəl/  /ˈbjuː.t̬ə.fəl/ /ˈbjuː.t̬ə.fəl/ " />
+            tools:text="/ˈbjuː.t̬ə.fəl/" />
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvContents"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:background="@color/background_gray"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/background_gray"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_content"
+        tools:itemCount="30"/>
 </LinearLayout>
