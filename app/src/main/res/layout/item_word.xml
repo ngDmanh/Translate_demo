@@ -94,7 +94,7 @@
             android:textColor="@color/dark_blue"
             android:textSize="14sp"
             android:textStyle="italic"
-            app:drawableEndCompat="@drawable/ic_rounded_brand_awareness_24"
+            app:drawableEndCompat="@drawable/ic_sound"
             app:drawableTint="@color/dark_blue" />
 
         <TextView
@@ -124,7 +124,7 @@
             android:textColor="@color/dark_blue"
             android:textSize="14sp"
             android:textStyle="italic"
-            app:drawableEndCompat="@drawable/ic_rounded_brand_awareness_24"
+            app:drawableEndCompat="@drawable/ic_sound"
             app:drawableTint="@color/dark_blue" />
 
         <TextView

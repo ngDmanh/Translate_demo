@@ -49,7 +49,6 @@ dependencies {
     implementation(libs.retrofit)
     // Retrofit with Gson Converter
     implementation(libs.converter.gson)
-    implementation(libs.logging.interceptor)
     implementation(libs.cardview.v7)
     implementation(libs.recyclerview)
 }

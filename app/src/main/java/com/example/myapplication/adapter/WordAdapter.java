@@ -66,7 +66,6 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
             tvInfo = itemView.findViewById(R.id.tvInfo);
             tvPronounceUK = itemView.findViewById(R.id.tvPronounceUK);
             rcvContents = itemView.findViewById(R.id.rcvContents);
-
         }
 
         public void bindData(@NonNull Word word) {
@@ -78,10 +77,8 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
             Pronounce pronounce = word.getPronounce();
             Us us = pronounce == null ? null : pronounce.getUs();
             Uk uk = pronounce == null ? null : pronounce.getUk();
-
             tvPronounceUS.setText(us == null ? "" : us.getText());
             tvPronounceUK.setText(uk == null ? "" : uk.getText());
-
             ContentAdapter contentAdapter = new ContentAdapter(word.getContents());
             rcvContents.setHasFixedSize(true);
             rcvContents.setAdapter(contentAdapter);

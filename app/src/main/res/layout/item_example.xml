@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        app:drawableStartCompat="@drawable/dot_svgrepo_com"
+        app:drawableStartCompat="@drawable/ic_dot"
         android:paddingVertical="4dp"
         tools:text="The fair will be held on the green behind the library." />
 </LinearLayout>

@@ -1,6 +1,9 @@
 package com.example.myapplication;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -33,13 +36,12 @@ import retrofit2.Callback;
 
 public class MainActivity extends AppCompatActivity {
     private CambridgeService cambridgeService;
-    private TextView tvTitle;
+    private TextView tvTitle,tvSuggest;
     private ImageButton ibFind;
     private EditText etWrite;
     private ImageButton ibClose;
     private RecyclerView rcvWords;
     private WordAdapter wordAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         etWrite = findViewById(R.id.etWrite);
         ibClose = findViewById(R.id.ibClose);
         rcvWords = findViewById(R.id.rcvWords);
+
 
         ibFind.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
         rcvWords.setAdapter(wordAdapter);
     }
 
-
     void initData() {
         cambridgeService = CambridgeAPIClient.getClient().create(CambridgeService.class);
     }
+
     void searchByKeyword(String keyword) {
         Call<CambridgeResponse> call = cambridgeService.searchByKeyword(keyword);
         call.enqueue(new Callback<CambridgeResponse>() {
@@ -101,10 +104,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     void displayWords(List<Word> listWord) {
         if (wordAdapter != null) {
             wordAdapter.setListWord(listWord);
             wordAdapter.notifyDataSetChanged();
         }
     }
+
 }
